@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Amatic SC', sans-serif;
+
+}
+
+body{
+	background-image: url("https://scontent.fbeg2-1.fna.fbcdn.net/v/t39.30808-6/243020001_10158656152754482_1558802597482509552_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=730e14&_nc_ohc=f9VVd6JUx70AX_BiMod&_nc_ht=scontent.fbeg2-1.fna&oh=235d71daa73f0015e60c12ee2c35b75e&oe=61553112");
+	/* background-position: center; */
+	/* background-repeat: no-repeat; */
+	background-size: cover;
+}
+
+.wrapper{
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(-130deg, rgba(19, 6, 18, .8), rgba(4, 1, 4, .8)); /* linear gradient -130deg from top to bottom */
+	clip-path: circle(25px at calc(100% - 45px) 45px); /* position and dimensions  */
+	transition: all .3s ease-in-out; /* when pressed starts from the button to full page */
+}
+
+#active:checked ~ .wrapper{ /* MAGIC  */
+	clip-path: circle(75%);
+}
+
+.menu-btn{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	z-index: 2;
+	text-align: center;
+	line-height: 50px;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	color: #fff; /* it's supposed to change the color of the bars */
+	font-size: 20px;
+	cursor: pointer;
+	background: linear-gradient(-130deg, rgba(19, 6, 18, 1), rgba(4, 1, 4, 1));
+	transition: all .3s ease;
+}
+
+#active:checked ~ .menu-btn{
+	background: #fff;
+	color: green;
+}
+
+#active:checked ~ .menu-btn i:before{
+	content: "\f00d";
+}
+
+.wrapper ul{
+	position: absolute;
+	top: 50%;
+	left: 50%;	/* taking (x.y)=(0,0) as point of reference */
+	transform: translate(-50%, -50%); /* transform is animation, move it back each axis so it's centered */
+	list-style: none;  /* takes dots away, no decoration  */
+	text-align: center;
+}
+
+.wrapper ul li{
+	margin: 15px 0;
+}
+
+.wrapper ul li a{
+	color: #fff;
+	text-decoration: none;
+	font-size: 30px;
+	font-weight: 500;
+	padding: 5px 50px;
+	position: relative;
+	line-height: 50px;
+	transition: all .3s ease; /* how and how long it appears in screen  */
+}
+
+.wrapper ul li a:after{
+	content: "";
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	background: #fff;
+	border-radius: 10px;
+	transform: scaleY(0); /* white rectangles disappear */
+	z-index: -1; /* letter appear 'on top' of rectangles, closer to me  */
+	transition: transform .3s ease; /* takes .3 to appear */
+}
+
+.wrapper ul li a:hover:after{
+	transform: scaleY(1); /* when hover, the rectangles appear */
+}
+
+.wrapper ul li a:hover{
+	color: rgba(4, 1, 4, 1); /* when hover the letters get the background color */
+}
+input{
+	display: none;
+}
